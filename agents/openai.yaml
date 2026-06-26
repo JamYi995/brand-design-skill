@@ -1,0 +1,7 @@
+interface:
+  display_name: "品牌设计增强器"
+  short_description: "把普通设计提示词升级为商业品牌视觉提示词，适合海报、封面和品牌物料。"
+  default_prompt: "Use $brand-design-skill to enhance this raw brand design prompt."
+
+policy:
+  allow_implicit_invocation: true
