@@ -11,13 +11,15 @@ The skill does not contain the private commercial design master knowledge base. 
 
 ## Requirements
 
-Set a JamBox token before calling the API:
+The bundled script can authorize automatically. If no token is available, it creates a one-time JamBox authorization link, opens it in the browser, waits for the user to log in or register, then stores the issued CLI token locally for future calls.
+
+Optional manual token setup:
 
 ```bash
 export JAMBOX_BRAND_DESIGN_TOKEN="jbxmodel_..."
 ```
 
-Prefer a `jbxmodel_` Model CLI token from JamBox API settings. A JamBox web JWT also works when available. Keep tokens out of files, commits, and final answers.
+Prefer the automatic authorization flow. If a token is provided manually, use a `jbxmodel_` Model CLI token from JamBox API settings. A JamBox web JWT also works when available. Keep tokens out of commits and final answers.
 
 The default API base is `https://api.jamboxclaw.com`. The bundled script automatically uses the correct production path for this API domain. Override only for local testing:
 
@@ -31,6 +33,12 @@ Run the bundled script:
 
 ```bash
 python3 scripts/enhance_brand_design_prompt.py "为咖啡品牌做一张新品海报"
+```
+
+Authorize only, without enhancing a prompt:
+
+```bash
+python3 scripts/enhance_brand_design_prompt.py --auth-only
 ```
 
 With brand context:
@@ -55,7 +63,7 @@ python3 scripts/enhance_brand_design_prompt.py "做一张香氛礼盒主图" --j
 3. Use `scripts/enhance_brand_design_prompt.py` to call the JamBox Brand Design Enhancer endpoint.
 4. Return the enhanced prompt as the primary answer.
 5. If the API reports `INSUFFICIENT_CREDITS`, tell the user their JamBox account needs credits.
-6. If no token is configured, ask the user to set `JAMBOX_BRAND_DESIGN_TOKEN` from JamBox API settings.
+6. If no token is configured, let the script open the JamBox authorization link and wait for completion. Only ask the user to set `JAMBOX_BRAND_DESIGN_TOKEN` manually if browser authorization cannot be completed.
 
 ## Direct API Reference
 

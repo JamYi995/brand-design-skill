@@ -22,6 +22,26 @@ Authorization: Bearer <JAMBOX_BRAND_DESIGN_TOKEN>
 
 Use a `jbxmodel_` Model CLI token from JamBox API settings when this skill is installed by an external Agent. The JamBox platform checks account identity, balance, per-call limits, and daily limits. A successful call consumes credits based on the configured model token cost multiplied by 2 and rounded up.
 
+## Browser Authorization Flow
+
+External Agents should prefer the bundled script flow instead of asking the user to copy a token manually.
+
+1. Create an authorization session:
+
+```text
+POST /brand-design-enhancer/auth/sessions
+```
+
+2. Open the returned `authorizeUrl` in the user's browser. The user logs in or registers in JamBox, then the page automatically creates a dedicated `jbxmodel_` CLI token for this skill.
+
+3. Poll for the token:
+
+```text
+POST /brand-design-enhancer/auth/sessions/{deviceCode}/token
+```
+
+The token is returned once, then cleared from the authorization session. Store it only in the local Agent environment or local private config.
+
 ## Request
 
 ```json
