@@ -19,7 +19,7 @@ export JAMBOX_BRAND_DESIGN_TOKEN="jbxmodel_..."
 
 Prefer a `jbxmodel_` Model CLI token from JamBox API settings. A JamBox web JWT also works when available. Keep tokens out of files, commits, and final answers.
 
-The default API base is `https://api.jamboxclaw.com`. Override only for local testing:
+The default API base is `https://api.jamboxclaw.com`. The bundled script automatically uses the correct production path for this API domain. Override only for local testing:
 
 ```bash
 export JAMBOX_BRAND_DESIGN_API_BASE="http://localhost:3000"
@@ -52,7 +52,7 @@ python3 scripts/enhance_brand_design_prompt.py "做一张香氛礼盒主图" --j
 
 1. Ask for the raw design prompt if the user has not provided one.
 2. Collect useful brand context when available: target audience, category, price band, brand personality, channel, deliverable format, required copy, and constraints.
-3. Use `scripts/enhance_brand_design_prompt.py` to call `/api/brand-design-enhancer/enhance`.
+3. Use `scripts/enhance_brand_design_prompt.py` to call the JamBox Brand Design Enhancer endpoint.
 4. Return the enhanced prompt as the primary answer.
 5. If the API reports `INSUFFICIENT_CREDITS`, tell the user their JamBox account needs credits.
 6. If no token is configured, ask the user to set `JAMBOX_BRAND_DESIGN_TOKEN` from JamBox API settings.

@@ -5,9 +5,11 @@ import os
 import sys
 import urllib.error
 import urllib.request
+from urllib.parse import urlparse
 
 DEFAULT_API_BASE = "https://api.jamboxclaw.com"
 ENDPOINT_PATH = "/api/brand-design-enhancer/enhance"
+API_DOMAIN_ENDPOINT_PATH = "/brand-design-enhancer/enhance"
 
 
 class EnhancerError(Exception):
@@ -19,7 +21,10 @@ def normalize_api_base(value):
 
 
 def endpoint_url(api_base):
-    return f"{normalize_api_base(api_base)}{ENDPOINT_PATH}"
+    base = normalize_api_base(api_base)
+    host = urlparse(base).netloc.lower()
+    path = API_DOMAIN_ENDPOINT_PATH if host == "api.jamboxclaw.com" else ENDPOINT_PATH
+    return f"{base}{path}"
 
 
 def parse_categories(values):

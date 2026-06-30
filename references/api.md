@@ -9,8 +9,10 @@ https://api.jamboxclaw.com
 Endpoint:
 
 ```text
-POST /api/brand-design-enhancer/enhance
+POST /brand-design-enhancer/enhance
 ```
+
+When using the main JamBox site as the base URL, use `https://jamboxclaw.com/api/brand-design-enhancer/enhance` instead.
 
 Authentication:
 
@@ -73,7 +75,7 @@ Use `data.enhancedPrompt` as the final improved prompt. `chargedCredits` is the 
 ## Curl
 
 ```bash
-curl -sS https://api.jamboxclaw.com/api/brand-design-enhancer/enhance \
+curl -sS https://api.jamboxclaw.com/brand-design-enhancer/enhance \
   -H "Authorization: Bearer $JAMBOX_BRAND_DESIGN_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
